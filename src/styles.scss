@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700;800&family=Orbitron:wght@900&family=Oswald:wght@700&family=Roboto+Condensed:ital,wght@0,700;1,700&display=swap");
+
+:root {
+  --white: #ffffff;
+  --yellow: #fbd743;
+  --red: #ff1f1f;
+  --light-blue: #5db9ff;
+  --dark-blue: #363b81;
+
+  // Pokemon Types
+  --normal: #a8a77a;
+  --fire: #ee8130;
+  --water: #6390f0;
+  --grass: #7ac74c;
+  --electric: #f7d02c;
+  --ice: #96d9d6;
+  --fighting: #c22e28;
+  --poison: #a33ea1;
+  --ground: #e2bf65;
+  --flying: #a98ff3;
+  --psychic: #f95587;
+  --bug: #a6b91a;
+  --rock: #b6a136;
+  --ghost: #735797;
+  --dark: #705746;
+  --dragon: #6f35fc;
+  --steel: #b7b7ce;
+  --fairy: #d685ad;
+}
+
+* {
+  box-sizing: border-box;
+
+  body {
+    margin: 0;
+  }
+
+  h3 {
+    font-family: "Oswald", sans-serif;
+  }
+}

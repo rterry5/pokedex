@@ -1,0 +1,108 @@
+.pokemon-card {
+  background: lighten($color: #fbd743, $amount: 20%);
+  border-radius: 12px;
+  padding: 0.75rem;
+  width: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  border: 0.75rem solid var(--yellow);
+
+  &__name {
+    text-transform: uppercase;
+    letter-spacing: -1.5px;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  &__sprite {
+    margin: 0.5rem 0;
+  }
+
+  &__data {
+    text-align: center;
+    text-transform: capitalize;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  &__index {
+    font-weight: 700;
+    margin: 0.5rem 0;
+  }
+
+  &__types-container {
+    display: flex;
+  }
+
+  &__type {
+    padding: 0.5rem;
+    color: var(--white);
+    border-radius: 8px;
+    margin: 0.25rem;
+
+    &--normal {
+      background-color: var(--normal);
+    }
+    &--fire {
+      background-color: var(--fire);
+    }
+    &--water {
+      background-color: var(--water);
+    }
+    &--grass {
+      background-color: var(--grass);
+    }
+    &--electric {
+      background-color: var(--electric);
+    }
+    &--ice {
+      background-color: var(--ice);
+    }
+    &--fighting {
+      background-color: var(--fighting);
+    }
+    &--poison {
+      background-color: var(--poison);
+    }
+    &--ground {
+      background-color: var(--ground);
+    }
+    &--flying {
+      background-color: var(--flying);
+    }
+    &--psychic {
+      background-color: var(--psychic);
+    }
+    &--bug {
+      background-color: var(--bug);
+    }
+    &--rock {
+      background-color: var(--rock);
+    }
+    &--ghost {
+      background-color: var(--ghost);
+    }
+    &--dark {
+      background-color: var(--dark);
+    }
+    &--dragon {
+      background-color: var(--dragon);
+    }
+    &--steel {
+      background-color: var(--steel);
+    }
+    &--fairy {
+      background-color: var(--fairy);
+    }
+  }
+}
+
+.pokemon-pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.5rem;
+}

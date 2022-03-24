@@ -1,0 +1,17 @@
+<div class="pokemon-card"
+  *ngFor="let pokemon of pokemon | paginate: {itemsPerPage: 20, currentPage: page, totalItems: totalPokemon}">
+  <h3 class="pokemon-card__name">{{pokemon.name}}</h3>
+  <img [src]="pokemon.sprites.front_default" alt="{{pokemon.name}}" class="pokemon-card__sprite">
+  <div class="pokemon-card__data">
+    <p class="pokemon-card__index">#{{pokemon.id}}</p>
+    <div class="pokemon-card__types-container">
+      <p class="pokemon-card__type pokemon-card__type--{{pokemon.types[i].type.name}}"
+        *ngFor="let type of pokemon.types, let i=index;">
+        {{pokemon.types[i].type.name}}
+      </p>
+    </div>
+  </div>
+</div>
+
+<pagination-controls (pageChange)="page = $event; pokemon = []; getPokemon()" class="pokemon-pagination">
+</pagination-controls>

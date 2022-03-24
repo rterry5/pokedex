@@ -1,0 +1,13 @@
+.dashboard {
+  max-width: 1440px;
+  margin: auto;
+  width: 100%;
+  justify-content: center;
+
+  &__card {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 1rem;
+  }
+}
