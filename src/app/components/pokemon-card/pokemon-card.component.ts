@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/domain/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
@@ -11,34 +10,13 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class PokemonCardComponent implements OnInit {
 
+  @Input()
   pokemon: Pokemon[] = [];
-  page = 1;
-  totalPokemon = 648;
-  subscription: Subscription;
-  name = '';
-  offset: number;
-  limitItemOnPage = 18;
 
   constructor(private pokemonService: PokemonService,
-              private http: HttpClient) { }
+    private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getPokemon();
   }
-
-  getPokemon(): void {
-    this.offset = (this.page * this.limitItemOnPage) - this.limitItemOnPage;
-    this.pokemonService.getPokemon(this.limitItemOnPage, this.offset)
-      .subscribe((response: any) => {
-        response.results.forEach(result => {
-        this.http.get(result.url)
-        .subscribe((uniqResponse: any) => {
-          this.pokemon.push(uniqResponse);
-
-          this.pokemon.sort((a, b) => a.id > b.id ? 1 : -1);
-          });
-      });
-    });
-    }
 }
 

@@ -2,12 +2,37 @@
   max-width: 1440px;
   margin: auto;
   width: 100%;
+  display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 
   &__card {
     display: flex;
-    gap: 2rem;
     flex-wrap: wrap;
-    margin: 1rem;
+    justify-content: center;
+  }
+
+  &__display-options {
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__items-per-page{
+
+  }
+
+  &__number {
+    font-family: "Orbitron", sans-serif;
+    margin: 0 1rem;
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.5rem;
   }
 }

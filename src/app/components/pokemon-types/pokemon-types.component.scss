@@ -1,0 +1,17 @@
+.pokemon-types {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1440px;
+    margin: 1.5rem 0;
+
+    &__type {
+        margin: .5rem;
+        padding: .5rem;
+        text-transform: capitalize;
+        border-radius: 8px;
+        font-family: "Open Sans", sans-serif;
+        color: var(--white);
+    }
+}
