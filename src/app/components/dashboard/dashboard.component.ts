@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Pokemon } from 'src/app/domain/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { HttpClient } from '@angular/common/http';
 import { PokemonType } from 'src/app/domain/pokemon-type';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,13 +15,22 @@ export class DashboardComponent implements OnInit {
   @Input()
   pokemon: Pokemon[] = [];
 
-  pokemonType: PokemonType;
+  @Input()
+  keyword: string;
+
+  @Output()
+  emitter: EventEmitter<PokemonType> = new EventEmitter<PokemonType>();
+
+  items = [];
+
+  // pokemonType: PokemonType;
   numberOfTypes: number;
   totalPokemon = 648;
   name = '';
   offset: number;
   limitItemOnPage = 18;
   page = 1;
+  showPokemon: boolean;
 
   constructor(private pokemonService: PokemonService,
     private http: HttpClient) { }
@@ -43,19 +53,27 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  // getPokemonTypes() {
-  //   this.pokemonService.getPokemonType(this.pokemonType.id)
-  //     .subscribe((data: any) => {
-  //       this.pokemonType = data.id;
-  //       console.log(this.pokemonType);
-  //     })
-  // }
+  showPokemonOfType(typeName) {
+    console.log(typeName)
+    this.showPokemon = true;
+  }
 
-  // getNumberOfTypes() {
-  //   this.http.get(`https://pokeapi.co/api/v2/type`)
-  //     .subscribe((data: any) => {
-  //       this.numberOfTypes = data.count;
-  //       console.log(this.numberOfTypes);
-  //     })
-  // }
+  filter(){
+    let pokemon = this.pokemon;
+    let array = [];
+
+    pokemon.forEach(pokemon => {
+      pokemon.types.forEach((type: PokemonType) => {
+        let pokemonType = type.type;
+        array.push(pokemonType);
+        array.forEach(element => {
+          // console.log(element.name)
+          if(this.keyword = pokemonType) {
+            // console.log(element.name);
+            this.showPokemonOfType(element.name);
+          }
+        });
+      })
+    })
+  }
 }

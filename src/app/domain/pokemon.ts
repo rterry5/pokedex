@@ -1,7 +1,9 @@
+import { PokemonType } from "./pokemon-type";
+
 export class Pokemon {
   public name: string;
   public id: number;
-  public types: [];
+  public types: PokemonType[];
   public sprites: string;
 
   constructor(name: string, id: number, types: [], sprites: string) {

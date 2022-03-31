@@ -1,5 +1,7 @@
 <div class="dashboard">
-  <app-pokemon-types class="dashboard__types"></app-pokemon-types>
+  <app-pokemon-types (click)="showPokemonOfType()" class="dashboard__types" [pokemonSorted]="pokemon"
+    (emitter)="filter($event)">
+  </app-pokemon-types>
 
   <app-pokemon-card [pokemon]="pokemon" class="dashboard__card"
     *ngFor="let pokemon of pokemon | paginate: {itemsPerPage: 18, currentPage: page, totalItems: totalPokemon}">
