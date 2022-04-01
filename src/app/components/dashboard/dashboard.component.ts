@@ -18,18 +18,13 @@ export class DashboardComponent implements OnInit {
   @Input()
   keyword: string;
 
-  @Output()
-  emitter: EventEmitter<PokemonType> = new EventEmitter<PokemonType>();
-
-  items = [];
-
-  // pokemonType: PokemonType;
   numberOfTypes: number;
   totalPokemon = 648;
   name = '';
   offset: number;
   limitItemOnPage = 18;
   page = 1;
+
   showPokemon: boolean;
 
   constructor(private pokemonService: PokemonService,
@@ -53,27 +48,26 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  showPokemonOfType(typeName) {
-    console.log(typeName)
-    this.showPokemon = true;
+  showPokemonOfType(typeName: string) {
+    this.keyword = typeName;
+    this.filter();
   }
 
-  filter(){
-    let pokemon = this.pokemon;
+  filter() {
+    let pokemons = this.pokemon;
     let array = [];
 
-    pokemon.forEach(pokemon => {
-      pokemon.types.forEach((type: PokemonType) => {
+    pokemons.forEach(pokemon => {
+      pokemon.types.forEach((type) => {
         let pokemonType = type.type;
         array.push(pokemonType);
         array.forEach(element => {
-          // console.log(element.name)
-          if(this.keyword = pokemonType) {
-            // console.log(element.name);
-            this.showPokemonOfType(element.name);
+          if (element.name == this.keyword) {
+            console.log(element.name, this.keyword);
+            
           }
+        })
         });
       })
-    })
   }
 }

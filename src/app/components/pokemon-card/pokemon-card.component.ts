@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { PokemonType } from 'src/app/domain/pokemon-type';
+import { Pokemon } from 'src/app/domain/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
@@ -11,10 +12,13 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 export class PokemonCardComponent implements OnInit {
 
   @Input()
-  pokemon: any;
+  pokemonCard: Pokemon[];
 
   @Input()
   pokemonSorted: any;
+
+  @Input()
+  showPokemon: boolean;
 
   constructor(private pokemonService: PokemonService,
     private http: HttpClient) { }

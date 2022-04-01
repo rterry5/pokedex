@@ -1,12 +1,12 @@
-<div class="pokemon-card">
-  <h3 class="pokemon-card__name">{{pokemon.name}}</h3>
-  <img src="{{pokemon.sprites.front_default}}" alt="{{pokemon.name}}" class="pokemon-card__sprite">
+<div class="pokemon-card" *ngIf="pokemonCard">
+  <h3 class="pokemon-card__name">{{pokemonCard.name}}</h3>
+  <img src="{{pokemonCard.sprites.front_default}}" alt="{{pokemonCard.name}}" class="pokemon-card__sprite">
   <div class="pokemon-card__data">
-    <p class="pokemon-card__index">#{{pokemon.id}}</p>
+    <p class="pokemon-card__index">#{{pokemonCard.id}}</p>
     <div class="pokemon-card__types-container">
-      <p class="pokemon-card__type pokemon--{{pokemon.types[i].type.name}}"
-        *ngFor="let type of pokemon.types, let i=index;">
-        {{pokemon.types[i].type.name}}
+      <p class="pokemon-card__type pokemon--{{pokemonCard.types[i].type.name}}"
+        *ngFor="let type of pokemonCard.types, let i=index;">
+        {{pokemonCard.types[i].type.name}}
       </p>
     </div>
   </div>

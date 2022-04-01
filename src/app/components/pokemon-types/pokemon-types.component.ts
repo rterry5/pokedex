@@ -13,26 +13,20 @@ import { PokemonType } from 'src/app/domain/pokemon-type';
 export class PokemonTypesComponent implements OnInit {
 
   @Input()
-  pokemonSorted: Pokemon[];
+  pokemonType: Pokemon[];
 
   @Output()
-  emitter: EventEmitter<PokemonType> = new EventEmitter<PokemonType>();
+  pokemonTypeClicked: EventEmitter<string> = new EventEmitter<string>();
 
-  items = [];
-  pokemonType = Types;
-  typeName: string;
-  typeId: number;
+  pokemonTypes = Types;
 
-  constructor(private pokemonService: PokemonService,
-    private http: HttpClient) { }
-
+  constructor() { }
 
   ngOnInit() {
-    this.pokemonType;
+    this.pokemonTypes;
   }
 
   getTypeClicked(keyword) {
-    this.emitter.emit(keyword);
-    // console.log(keyword);
+    this.pokemonTypeClicked.emit(keyword);
   }
 }
