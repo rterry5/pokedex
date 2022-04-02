@@ -1,3 +1,5 @@
+@import "src/mixins/settings.scss";
+
 .pokemon-card {
   background: lighten($color: #fbd743, $amount: 20%);
   border-radius: 12px;
@@ -8,7 +10,7 @@
   flex-direction: column;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-  border: 0.5rem solid var(--yellow);
+  border: 0.5rem solid $yellow;
   margin: .5rem;
 
   &__name {
@@ -39,7 +41,7 @@
 
   &__type {
     padding: 0.5rem;
-    color: var(--white);
+    color: $white;
     border-radius: 8px;
     margin: 0.25rem;
   }

@@ -1,9 +1,10 @@
 <div class="dashboard">
-  <app-pokemon-types class="dashboard__types" [pokemonType]="pokemon" (pokemonTypeClicked)="showPokemonOfType($event)">
+  <app-pokemon-types class="dashboard__types" [pokemonType]="pokemon" (pokemonTypeClicked)="filter($event)">
   </app-pokemon-types>
 
   <app-pokemon-card [pokemonCard]="pokemonCard" class="dashboard__card"
-    *ngFor="let pokemonCard of pokemon | paginate: {itemsPerPage: 18, currentPage: page, totalItems: totalPokemon}">
+    *ngFor="let pokemonCard of pokemon | paginate: {itemsPerPage: 18, currentPage: page, totalItems: totalPokemon}"
+    [class.dashboard__card--hide]="!showPokemon">
   </app-pokemon-card>
 
   <div class="dashboard__display-options">

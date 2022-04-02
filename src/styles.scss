@@ -1,33 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700;800&family=Orbitron:wght@900&family=Oswald:wght@700&family=Roboto+Condensed:ital,wght@0,700;1,700&display=swap");
 
-:root {
-  --white: #ffffff;
-  --yellow: #fbd743;
-  --red: #ff1f1f;
-  --light-blue: #5db9ff;
-  --dark-blue: #363b81;
 
-  // Pokemon Types
-  --normal: #a8a77a;
-  --fire: #ee8130;
-  --water: #6390f0;
-  --grass: #7ac74c;
-  --electric: #f7d02c;
-  --ice: #96d9d6;
-  --fighting: #c22e28;
-  --poison: #a33ea1;
-  --ground: #e2bf65;
-  --flying: #a98ff3;
-  --psychic: #f95587;
-  --bug: #a6b91a;
-  --rock: #b6a136;
-  --ghost: #735797;
-  --dark: #705746;
-  --dragon: #6f35fc;
-  --steel: #b7b7ce;
-  --fairy: #d685ad;
-}
+@import "src/mixins/settings.scss";
+@import "src/mixins/colors.scss";
 
 * {
   box-sizing: border-box;
@@ -42,58 +18,58 @@
 
   .pokemon {
     &--normal {
-      background-color: var(--normal);
-  }
+      background-color: $normal;
+    }
     &--fire {
-        background-color: var(--fire);
+        background-color: $fire;
     }
     &--water {
-        background-color: var(--water);
+        background-color: $water;
     }
     &--grass {
-        background-color: var(--grass);
+        background-color: $grass;
     }
     &--electric {
-        background-color: var(--electric);
+        background-color: $electric;
     }
     &--ice {
-        background-color: var(--ice);
+        background-color: $ice;
     }
     &--fighting {
-        background-color: var(--fighting);
+        background-color: $fighting;
     }
     &--poison {
-        background-color: var(--poison);
+        background-color: $poison;
     }
     &--ground {
-        background-color: var(--ground);
+        background-color: $ground;
     }
     &--flying {
-        background-color: var(--flying);
+        background-color: $flying;
     }
     &--psychic {
-        background-color: var(--psychic);
+        background-color: $psychic;
     }
     &--bug {
-        background-color: var(--bug);
+        background-color: $bug;
     }
     &--rock {
-        background-color: var(--rock);
+        background-color: $rock;
     }
     &--ghost {
-        background-color: var(--ghost);
+        background-color: $ghost;
     }
     &--dark {
-        background-color: var(--dark);
+        background-color: $dark;
     }
     &--dragon {
-        background-color: var(--dragon);
+        background-color: $dragon;
     }
     &--steel {
-        background-color: var(--steel);
+        background-color: $steel;
     }
     &--fairy {
-        background-color: var(--fairy);
+        background-color: $fairy;
     }
   }
 }

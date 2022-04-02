@@ -2,8 +2,10 @@ import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Pokemon } from 'src/app/domain/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { HttpClient } from '@angular/common/http';
-import { PokemonType } from 'src/app/domain/pokemon-type';
-import { element } from 'protractor';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -17,13 +19,15 @@ export class DashboardComponent implements OnInit {
 
   @Input()
   keyword: string;
+  // pokeType: string;
 
   numberOfTypes: number;
-  totalPokemon = 648;
+  totalPokemon: number;
   name = '';
   offset: number;
   limitItemOnPage = 18;
   page = 1;
+  pokemonId: number;
 
   showPokemon: boolean;
 
@@ -32,6 +36,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getPokemonPerPage();
+    this.getTotalNumberOfPokemon();
+    this.showPokemon = true;
   }
 
   getPokemonPerPage() {
@@ -48,26 +54,37 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  showPokemonOfType(typeName: string) {
-    this.keyword = typeName;
-    this.filter();
+  getTotalNumberOfPokemon(): any {
+    this.pokemonService.getNumberOfPokemon()
+      .subscribe((response: any) => {
+        this.totalPokemon = response.count;
+      });
   }
 
-  filter() {
-    let pokemons = this.pokemon;
-    let array = [];
+  showPokemonOfType(type: string) {
+    this.keyword = type;
+    this.showPokemon = true;
+  }
 
-    pokemons.forEach(pokemon => {
-      pokemon.types.forEach((type) => {
-        let pokemonType = type.type;
-        array.push(pokemonType);
-        array.forEach(element => {
-          if (element.name == this.keyword) {
-            console.log(element.name, this.keyword);
-            
-          }
-        })
-        });
-      })
+
+  filter(pokeType: string) {
+    this.keyword = pokeType;
+    const promises = [];
+      for (let i = 1; i <= this.totalPokemon; i++) {
+        const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+        promises.push(fetch(url).then((res) => res.json()));
+      }
+      Promise.all(promises).then((pokemon) => {
+        const allPokemon = pokemon.map((result) => ({
+          type: result.types.map((type) => type.type.name).join(', '),
+          id: result.id,
+          name: result.name
+        })).sort((a, b) => a.id > b.id ? 1 : -1);
+
+        const filteredPokemonsByType = allPokemon.filter(mon => mon.type.includes(pokeType));
+        console.log(pokeType, filteredPokemonsByType);
+
+        this.showPokemonOfType(this.keyword);
+      });
   }
 }

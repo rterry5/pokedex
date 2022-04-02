@@ -24,12 +24,20 @@ export class PokemonService {
     return this.http.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
   }
 
+  getPokemonById(id: number) {
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  }
+
   getMoreData(name: string) {
     return this.http.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
   }
 
   getPokemonType(type: any) {
     return this.http.get(`https://pokeapi.co/api/v2/type/${type}`)
+  }
+
+  getNumberOfPokemon() {
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon-species/?limit=0`);
   }
 
   getTypes(): PokemonType[] {

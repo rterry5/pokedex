@@ -1,6 +1,8 @@
+@import "src/mixins/settings.scss";
+
 .header {
   padding: 1rem;
-  background-color: var(--red);
+  background-color: $red;
   text-align: center;
   font-size: 2rem;
   font-family: "Orbitron", sans-serif;
@@ -8,7 +10,7 @@
   &__title {
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: var(--white);
+    color: $white;
     margin: 0;
   }
 }

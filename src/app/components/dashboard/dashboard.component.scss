@@ -1,3 +1,5 @@
+@import "src/mixins/settings.scss";
+
 .dashboard {
   max-width: 1440px;
   margin: auto;
@@ -16,6 +18,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    &--hide {
+      display: none;
+    }
   }
 
   &__display-options {
@@ -24,9 +30,6 @@
     max-width: 1440px;
     justify-content: space-around;
     align-items: center;
-  }
-
-  &__items-per-page {
   }
 
   &__number {
@@ -39,5 +42,11 @@
     justify-content: center;
     font-family: "Orbitron", sans-serif;
     font-size: 1.5rem;
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .dashboard {
+    max-width: $breakpoint-tablet;
   }
 }

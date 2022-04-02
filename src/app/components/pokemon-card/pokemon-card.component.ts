@@ -15,9 +15,6 @@ export class PokemonCardComponent implements OnInit {
   pokemonCard: Pokemon[];
 
   @Input()
-  pokemonSorted: any;
-
-  @Input()
   showPokemon: boolean;
 
   constructor(private pokemonService: PokemonService,
