@@ -3,7 +3,7 @@
   <img src="{{pokemonCard.sprites.front_default}}" alt="{{pokemonCard.name}}" class="pokemon-card__sprite">
   <div class="pokemon-card__data">
     <p class="pokemon-card__index">#{{pokemonCard.id}}</p>
-    <div class="pokemon-card__types-container">
+    <div class="pokemon-card__types-container" *ngIf="pokemonCard">
       <p class="pokemon-card__type pokemon--{{pokemonCard.types[i].type.name}}"
         *ngFor="let type of pokemonCard.types, let i=index;">
         {{pokemonCard.types[i].type.name}}
