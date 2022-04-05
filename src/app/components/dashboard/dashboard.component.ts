@@ -14,34 +14,30 @@ export class DashboardComponent implements OnInit {
   @Input()
   pokemon: Pokemon[] = [];
 
-  @Input()
-  keyword: string;
-
   pokemonFiltered = [];
 
-  numberOfTypes: number;
   totalPokemon: number;
-  name = '';
-  offset: number;
-  limitItemOnPage = 18;
-  page = 1;
-  pokemonId: number;
 
-  showPokemon: boolean;
+  offset: number;
+
+  limitItemOnPage = 18;
+
+  page = 1;
 
   constructor(private pokemonService: PokemonService,
     private http: HttpClient) { }
 
   ngOnInit() {
     this.getPokemonPerPage();
-    this.getTotalNumberOfPokemon();
+    this.totalPokemon = 250;
+    // this.getTotalNumberOfPokemon();
   }
 
   getPokemonPerPage() {
     this.offset = (this.page * this.limitItemOnPage) - this.limitItemOnPage;
     this.pokemonService.getPokemon(this.limitItemOnPage, this.offset)
       .subscribe((response: any) => {
-        response.results.forEach(result => {
+        response.results.forEach((result: any) => {
           this.http.get(result.url)
             .subscribe((uniqResponse: any) => {
               this.pokemon.push(uniqResponse);
@@ -51,62 +47,39 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  getTotalNumberOfPokemon(): any {
-    this.pokemonService.getNumberOfPokemon()
-      .subscribe((response: any) => {
-        this.totalPokemon = response.count;
-      });
+  showAllPokemon() {
+    this.getPokemonPerPage();
   }
 
-  showPokemonOfType(showPokemon: boolean) {
-    this.showPokemon = showPokemon;
-  }
-
-
-  filter(pokeType: string) {
-    this.keyword = pokeType;
+  filterPokemonByType(pokeType: string) {
     const promises = [];
-      for (let i = 1; i <= this.totalPokemon; i++) {
-        const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-        promises.push(fetch(url).then((res) => res.json()));
-      }
-      Promise.all(promises).then((pokemon) => {
-        const allPokemon = pokemon.map((result) => ({
-          type: result.types.map((type) => type.type.name).join(', '),
-          id: result.id,
-          name: result.name
-        })).sort((a, b) => a.id > b.id ? 1 : -1);
+    for (let i = 1; i <= this.totalPokemon; i++) {
+      const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+      promises.push(fetch(url).then((res) => res.json()));
+    }
+    Promise.all(promises).then((pokemon) => {
+      const allPokemon = pokemon.map((result) => ({
+        type: result.types.map((type) => type.type.name).join(', '),
+        id: result.id,
+        name: result.name,
+        sprites: result.sprites
+      })).sort((a, b) => a.id > b.id ? 1 : -1);
 
-        let allMonTypes = '';
-        let nonFilteredPokemon = allPokemon.filter(mons => mons.type.includes(allMonTypes));
-        let filteredPokemonsByType = allPokemon.filter(mon => mon.type.includes(pokeType));
+      let nonFilteredPokemon = allPokemon.filter(mons => mons.type);
+      let filteredPokemonsByType = allPokemon.filter(mon => mon.type.includes(pokeType));
 
+      if (filteredPokemonsByType != nonFilteredPokemon) {
         this.pokemonFiltered = filteredPokemonsByType;
-        if (filteredPokemonsByType != nonFilteredPokemon) {
-          this.showPokemonOfType(true);
-          console.log(this.pokemonFiltered)
-          // this.pokemon = this.pokemonFiltered;
-          // this.totalPokemon = this.pokemonFiltered.length;
-
-        }
-      });
+        this.pokemon = this.pokemonFiltered;
+        console.log(this.pokemonFiltered);
+      }
+    });
   }
+
+  // getTotalNumberOfPokemon(): any {
+  //   this.pokemonService.getNumberOfPokemon()
+  //     .subscribe((response: any) => {
+  //       this.totalPokemon = response.count;
+  //     });
+  // }
 }
-
-
-
-
-
-
-        // let name = '';
-        // nonFilteredPokemon.forEach(mons => {
-        //   mons.name = allMonTypes;
-        //   filteredPokemonsByType.forEach(filteredMons => {
-        //     filteredMons.name = pokeType;
-        //   })
-        //   if (pokeType == mons.name) {
-        //     console.log(pokeType, mons.name, 'matches');
-        //     this.showPokemonOfType(true);
-        //     return pokeType;
-        //   }
-        // });

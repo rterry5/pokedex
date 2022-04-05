@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/domain/pokemon';
-import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -11,7 +9,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 export class PokemonCardComponent implements OnInit {
 
   @Input()
-  pokemonCard: any;
+  pokemonCard: Pokemon;
 
   @Input()
   showPokemon: boolean;
