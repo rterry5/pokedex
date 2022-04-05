@@ -1,6 +1,6 @@
 <div class="pokemon-types">
   <span class="pokemon-types__type pokemon--{{type.type}}" *ngFor="let type of pokemonTypes"
-    (click)="getTypeClicked(type.type)">
+    (click)="getTypeClicked(type.type)" name="types">
     {{type.type}}
   </span>
 </div>

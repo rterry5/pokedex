@@ -4,11 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng deploy --baseHref=/pokedex/"
+    "build": "ng build",
+    "deploy": "ng deploy --baseHref=/pokedex/",
+    "mac-build": "sudo ng build",
+    "mac-deploy": "sudo ng deploy --baseHref=/pokedex/"
   },
   "private": true,
   "dependencies": {
