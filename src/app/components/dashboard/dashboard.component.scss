@@ -5,6 +5,8 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 
   &__types {
     &--show {
@@ -23,10 +25,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
-    &--hide {
-      display: none;
-    }
   }
 
   &__display-options {

@@ -17,13 +17,16 @@ export class PokemonTypesComponent implements OnInit {
 
   pokemonTypes = Types;
 
+  keyword: string;
+
   constructor() { }
 
   ngOnInit() {
     this.pokemonTypes;
   }
 
-  getTypeClicked(keyword) {
+  getTypeClicked(keyword: string) {
     this.pokemonTypeClicked.emit(keyword);
+    this.keyword = keyword;
   }
 }

@@ -16,6 +16,8 @@ export class DashboardComponent implements OnInit {
 
   pokemonFiltered = [];
 
+  keyword: string;
+
   totalPokemon: number;
 
   offset: number;
@@ -29,7 +31,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getPokemonPerPage();
-    this.totalPokemon = 250;
+    this.totalPokemon = 151;
     // this.getTotalNumberOfPokemon();
   }
 
@@ -47,11 +49,9 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  showAllPokemon() {
-    this.getPokemonPerPage();
-  }
 
   filterPokemonByType(pokeType: string) {
+    this.keyword = pokeType;
     const promises = [];
     for (let i = 1; i <= this.totalPokemon; i++) {
       const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
@@ -76,6 +76,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // showAllPokemon() {
+  //   this.getPokemonPerPage();
+  // }
   // getTotalNumberOfPokemon(): any {
   //   this.pokemonService.getNumberOfPokemon()
   //     .subscribe((response: any) => {
