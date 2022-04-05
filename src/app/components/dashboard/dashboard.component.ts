@@ -1,10 +1,7 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/domain/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -19,7 +16,8 @@ export class DashboardComponent implements OnInit {
 
   @Input()
   keyword: string;
-  // pokeType: string;
+
+  pokemonFiltered = [];
 
   numberOfTypes: number;
   totalPokemon: number;
@@ -37,7 +35,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.getPokemonPerPage();
     this.getTotalNumberOfPokemon();
-    this.showPokemon = true;
   }
 
   getPokemonPerPage() {
@@ -61,9 +58,8 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  showPokemonOfType(type: string) {
-    this.keyword = type;
-    this.showPokemon = true;
+  showPokemonOfType(showPokemon: boolean) {
+    this.showPokemon = showPokemon;
   }
 
 
@@ -81,10 +77,36 @@ export class DashboardComponent implements OnInit {
           name: result.name
         })).sort((a, b) => a.id > b.id ? 1 : -1);
 
-        const filteredPokemonsByType = allPokemon.filter(mon => mon.type.includes(pokeType));
-        console.log(pokeType, filteredPokemonsByType);
+        let allMonTypes = '';
+        let nonFilteredPokemon = allPokemon.filter(mons => mons.type.includes(allMonTypes));
+        let filteredPokemonsByType = allPokemon.filter(mon => mon.type.includes(pokeType));
 
-        this.showPokemonOfType(this.keyword);
+        this.pokemonFiltered = filteredPokemonsByType;
+        if (filteredPokemonsByType != nonFilteredPokemon) {
+          this.showPokemonOfType(true);
+          console.log(this.pokemonFiltered)
+          // this.pokemon = this.pokemonFiltered;
+          // this.totalPokemon = this.pokemonFiltered.length;
+
+        }
       });
   }
 }
+
+
+
+
+
+
+        // let name = '';
+        // nonFilteredPokemon.forEach(mons => {
+        //   mons.name = allMonTypes;
+        //   filteredPokemonsByType.forEach(filteredMons => {
+        //     filteredMons.name = pokeType;
+        //   })
+        //   if (pokeType == mons.name) {
+        //     console.log(pokeType, mons.name, 'matches');
+        //     this.showPokemonOfType(true);
+        //     return pokeType;
+        //   }
+        // });

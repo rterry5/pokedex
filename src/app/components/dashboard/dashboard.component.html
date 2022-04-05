@@ -1,14 +1,17 @@
 <div class="dashboard">
-  <app-pokemon-types class="dashboard__types" [pokemonType]="pokemon" (pokemonTypeClicked)="filter($event)">
+  <app-pokemon-types class="dashboard__types" (pokemonTypeClicked)="filter($event)">
   </app-pokemon-types>
 
-  <app-pokemon-card [pokemonCard]="pokemonCard" class="dashboard__card"
-    *ngFor="let pokemonCard of pokemon | paginate: {itemsPerPage: 18, currentPage: page, totalItems: totalPokemon}"
-    [class.dashboard__card--hide]="!showPokemon">
-  </app-pokemon-card>
+  <ng-container *ngIf="pokemonFiltered">
+    <app-pokemon-card [pokemonCard]="pokemonCard" class="dashboard__card"
+      *ngFor="let pokemonCard of pokemon | paginate: {itemsPerPage: 18, currentPage: page, totalItems: totalPokemon}"
+      [class.dashboard__card--hide]="!showPokemonOfType">
+    </app-pokemon-card>
+  </ng-container>
 
   <div class="dashboard__display-options">
-    <pagination-controls (pageChange)="page = $event; pokemon = []; getPokemonPerPage()" class="dashboard__pagination">
+    <pagination-controls (maxSize)="this.pokemonFiltered.length"
+      (pageChange)="page = $event; pokemon = []; getPokemonPerPage()" class="dashboard__pagination">
     </pagination-controls>
   </div>
 </div>

@@ -12,9 +12,6 @@ import { PokemonType } from 'src/app/domain/pokemon-type';
 })
 export class PokemonTypesComponent implements OnInit {
 
-  @Input()
-  pokemonType: Pokemon[];
-
   @Output()
   pokemonTypeClicked: EventEmitter<string> = new EventEmitter<string>();
 
