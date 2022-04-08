@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from 'src/app/domain/pokemon';
 import { PokemonType } from 'src/app/domain/pokemon-type';
-import { PokemonEnumTypes } from 'src/app/enum/pokemon-enum-types';
 import { Types } from '../components/data/types';
 
 @Injectable({

@@ -1,5 +1,3 @@
-import { PokemonEnumTypes } from "../enum/pokemon-enum-types";
-
 export class PokemonType {
     public type: string;
     public id: number;

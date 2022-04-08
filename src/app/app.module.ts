@@ -10,6 +10,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PokemonTypesComponent } from './components/pokemon-types/pokemon-types.component';
+import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-details.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PokemonTypesComponent } from './components/pokemon-types/pokemon-types.
     PokemonCardComponent,
     HeaderComponent,
     PokemonTypesComponent,
+    PokemonDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -74,7 +74,7 @@ export const Types: PokemonType[] = [
         id: 17
     },
     {
-        type: 'reset',
+        type: 'all',
         id: 18
     },
 ]

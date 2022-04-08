@@ -12,7 +12,7 @@ export class PokemonCardComponent implements OnInit {
   pokemonCard: Pokemon;
 
   @Input()
-  pokemonFiltered: any;
+  pokemonFiltered: Pokemon;
 
   constructor() { }
 

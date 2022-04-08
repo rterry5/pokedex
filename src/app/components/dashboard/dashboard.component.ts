@@ -27,14 +27,14 @@ export class DashboardComponent implements OnInit {
 
   totalPages: number;
 
-  constructor(private pokemonService: PokemonService,
-    private http: HttpClient,) { }
+  allIds = [];
+
+  constructor(private pokemonService: PokemonService,) { }
 
   ngOnInit() {
     this.getTotalNumberOfPokemon();
     setTimeout(() => {
-      this.filterPokemonByType('reset');
-      console.log(this.keyword)
+      this.filterPokemonByType('all');
     },);
   }
 
@@ -60,10 +60,9 @@ export class DashboardComponent implements OnInit {
         this.pokemonFiltered = filteredPokemonsByType;
         this.pokemon = this.pokemonFiltered;
 
-        if (this.keyword === 'reset' || '' || null || undefined) {
+        if (this.keyword === 'all' || '' || null || undefined) {
           this.pokemonFiltered = nonFilteredPokemon;
           this.pokemon = this.pokemonFiltered;
-          console.log(this.keyword, this.pokemonFiltered)
         }
       }
     });

@@ -24,6 +24,5 @@ export class PokemonTypesComponent implements OnInit {
   getTypeClicked(keyword: string) {
     this.pokemonTypeClicked.emit(keyword);
     this.keyword = keyword;
-    console.log(keyword)
   }
 }

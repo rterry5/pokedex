@@ -72,5 +72,10 @@
     &--fairy {
         background-color: $fairy;
     }
+    &--all {
+      background-color: $all;
+      color: $black !important;
+      width: 125px;
+    }
   }
 }
