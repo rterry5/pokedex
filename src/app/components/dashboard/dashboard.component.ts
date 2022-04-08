@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     this.getTotalNumberOfPokemon();
     setTimeout(() => {
       this.filterPokemonByType('all');
-    },);
+    }, 1000);
   }
 
   filterPokemonByType(pokeType: string) {
