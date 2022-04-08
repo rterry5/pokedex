@@ -1,9 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Pokemon } from 'src/app/domain/pokemon';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Types } from '../data/types';
-import { HttpClient } from '@angular/common/http';
-import { PokemonService } from 'src/app/services/pokemon.service';
-import { PokemonType } from 'src/app/domain/pokemon-type';
 
 @Component({
   selector: 'app-pokemon-types',
@@ -28,5 +24,6 @@ export class PokemonTypesComponent implements OnInit {
   getTypeClicked(keyword: string) {
     this.pokemonTypeClicked.emit(keyword);
     this.keyword = keyword;
+    console.log(keyword)
   }
 }

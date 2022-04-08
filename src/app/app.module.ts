@@ -17,7 +17,7 @@ import { PokemonTypesComponent } from './components/pokemon-types/pokemon-types.
     DashboardComponent,
     PokemonCardComponent,
     HeaderComponent,
-    PokemonTypesComponent
+    PokemonTypesComponent,
   ],
   imports: [
     BrowserModule,

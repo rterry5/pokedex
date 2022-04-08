@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/domain/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { HttpClient } from '@angular/common/http';
@@ -7,11 +7,10 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
 
-  @Input()
   pokemon: Pokemon[] = [];
 
   pokemonFiltered = [];
@@ -24,15 +23,16 @@ export class DashboardComponent implements OnInit {
 
   limitItemOnPage = 18;
 
-  page = 1;
+  page: number;
+
+  totalPages: number;
 
   constructor(private pokemonService: PokemonService,
-    private http: HttpClient) { }
+    private http: HttpClient,) { }
 
   ngOnInit() {
     this.getPokemonPerPage();
-    this.totalPokemon = 151;
-    // this.getTotalNumberOfPokemon();
+    this.getTotalNumberOfPokemon();
   }
 
   getPokemonPerPage() {
@@ -49,7 +49,6 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-
   filterPokemonByType(pokeType: string) {
     this.keyword = pokeType;
     const promises = [];
@@ -58,8 +57,8 @@ export class DashboardComponent implements OnInit {
       promises.push(fetch(url).then((res) => res.json()));
     }
     Promise.all(promises).then((pokemon) => {
-      const allPokemon = pokemon.map((result) => ({
-        type: result.types.map((type) => type.type.name).join(', '),
+      let allPokemon = pokemon.map((result) => ({
+        type: result.types.map((type) => type.type.name).join(', ').split(', '),
         id: result.id,
         name: result.name,
         sprites: result.sprites
@@ -71,18 +70,15 @@ export class DashboardComponent implements OnInit {
       if (filteredPokemonsByType != nonFilteredPokemon) {
         this.pokemonFiltered = filteredPokemonsByType;
         this.pokemon = this.pokemonFiltered;
-        console.log(this.pokemonFiltered);
       }
     });
+    this.page = 1;
   }
 
-  // showAllPokemon() {
-  //   this.getPokemonPerPage();
-  // }
-  // getTotalNumberOfPokemon(): any {
-  //   this.pokemonService.getNumberOfPokemon()
-  //     .subscribe((response: any) => {
-  //       this.totalPokemon = response.count;
-  //     });
-  // }
+  getTotalNumberOfPokemon(): any {
+    this.pokemonService.getNumberOfPokemon()
+      .subscribe((response: any) => {
+        this.totalPokemon = response.count;
+      });
+  }
 }
