@@ -73,12 +73,8 @@ export const Types: PokemonType[] = [
         type: 'fairy',
         id: 17
     },
-    // {
-    //     type: 'unknown',
-    //     id: 18
-    // },
-    // {
-    //     type: 'shadow',
-    //     id: 19
-    // }
+    {
+        type: 'reset',
+        id: 18
+    },
 ]

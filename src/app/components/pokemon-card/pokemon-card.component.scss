@@ -1,8 +1,8 @@
 @import "src/mixins/settings.scss";
 
 .pokemon-card {
-  background: lighten($color: #fbd743, $amount: 20%);
-  border-radius: 12px;
+  background: lighten($color: $white, $amount: 20%);
+  border-radius: 15px;
   padding: 0.5rem;
   width: 180px;
   display: flex;
@@ -10,18 +10,22 @@
   flex-direction: column;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-  border: 0.5rem solid $yellow;
   margin: .5rem;
+  position: relative;
 
   &__name {
-    text-transform: uppercase;
+    text-transform: capitalize;
+    font-weight: 700;
     letter-spacing: -1px;
     font-size: 1.25rem;
     margin: 0;
+    color: $dark-gray;
+    z-index: 1;
   }
 
   &__sprite {
-    max-height: 75px;
+    max-height: 100px;
+    z-index: 1;
   }
 
   &__data {
@@ -33,6 +37,10 @@
   &__index {
     font-weight: 700;
     margin: 0.5rem 0;
+    color: $gray;
+    font-size: 4rem;
+    position: absolute;
+    font-family: 'Noto Sans', sans-serif;
   }
 
   &__types-container {
@@ -46,5 +54,6 @@
     margin: 0.25rem;
     font-size: 0.8125rem;
     text-transform: capitalize;
+    z-index: 1;
   }
 }

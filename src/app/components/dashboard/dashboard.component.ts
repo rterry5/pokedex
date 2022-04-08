@@ -31,22 +31,11 @@ export class DashboardComponent implements OnInit {
     private http: HttpClient,) { }
 
   ngOnInit() {
-    this.getPokemonPerPage();
     this.getTotalNumberOfPokemon();
-  }
-
-  getPokemonPerPage() {
-    this.offset = (this.page * this.limitItemOnPage) - this.limitItemOnPage;
-    this.pokemonService.getPokemon(this.limitItemOnPage, this.offset)
-      .subscribe((response: any) => {
-        response.results.forEach((result: any) => {
-          this.http.get(result.url)
-            .subscribe((uniqResponse: any) => {
-              this.pokemon.push(uniqResponse);
-              this.pokemon.sort((a, b) => a.id > b.id ? 1 : -1);
-            });
-        });
-      });
+    setTimeout(() => {
+      this.filterPokemonByType('reset');
+      console.log(this.keyword)
+    },);
   }
 
   filterPokemonByType(pokeType: string) {
@@ -70,6 +59,12 @@ export class DashboardComponent implements OnInit {
       if (filteredPokemonsByType != nonFilteredPokemon) {
         this.pokemonFiltered = filteredPokemonsByType;
         this.pokemon = this.pokemonFiltered;
+
+        if (this.keyword === 'reset' || '' || null || undefined) {
+          this.pokemonFiltered = nonFilteredPokemon;
+          this.pokemon = this.pokemonFiltered;
+          console.log(this.keyword, this.pokemonFiltered)
+        }
       }
     });
     this.page = 1;

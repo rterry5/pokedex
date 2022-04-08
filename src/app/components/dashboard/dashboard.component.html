@@ -6,7 +6,7 @@
     <div class="dashboard__card-container">
       <app-pokemon-card [pokemonCard]="pokemon" [pokemonFiltered]="pokemon" class="dashboard__card" *ngFor="let pokemon of pokemon | paginate: {
           itemsPerPage: limitItemOnPage,
-          currentPage: page}">
+          currentPage: page, totalItems: pokemonFiltered.length}">
       </app-pokemon-card>
     </div>
   </ng-container>
