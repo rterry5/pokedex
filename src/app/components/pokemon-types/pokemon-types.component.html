@@ -1,6 +1,6 @@
 <div class="pokemon-types">
-  <button class="pokemon-types__type pokemon--{{type.type}}" *ngFor="let type of pokemonTypes"
-    [class.pokemon-types__type--active]="keyword == type.type" (click)="getTypeClicked(type.type)" name="types">
-    {{type.type}}
+  <button class="pokemon-types__type pokemon--{{types.type}}" *ngFor="let types of pokemonTypes"
+    [class.pokemon-types__type--active]="keyword == types.type" (click)="getTypeClicked(types.type)" name="types">
+    {{types.type}}
   </button>
 </div>

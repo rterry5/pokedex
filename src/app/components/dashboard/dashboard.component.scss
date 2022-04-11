@@ -53,3 +53,9 @@
     max-width: $breakpoint-tablet;
   }
 }
+
+.skeleton {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

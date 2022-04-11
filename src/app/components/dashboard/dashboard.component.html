@@ -1,4 +1,4 @@
-<div class="dashboard">
+<div class="dashboard" *ngIf="pokemon.length; else loader">
   <app-pokemon-types class="dashboard__types" (pokemonTypeClicked)="filterPokemonByType($event)">
   </app-pokemon-types>
 
@@ -17,3 +17,17 @@
     </pagination-controls>
   </div>
 </div>
+<ng-template #loader>
+  <ngx-skeleton-loader
+  class="skeleton"
+  count="18"
+  [theme]="{
+    'border-radius': '12px',
+    height: '130px',
+    width: '180px',
+    'background-color': '#cccccc',
+    border: '1px solid white',
+    margin:'.5rem'
+  }"
+  ></ngx-skeleton-loader>
+</ng-template>
